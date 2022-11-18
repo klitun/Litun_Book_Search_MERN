@@ -4,7 +4,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 // import { createUser } from '../utils/API';
 import Auth from '../utils/auth';
 
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 
 
@@ -48,13 +48,6 @@ const SignupForm = () => {
     try {
       const {data} = await addUser({
         variables: {...userFormData}});
-
-      // if (!response.ok) {
-      //   throw new Error('something went wrong!');
-      // }
-
-      // const { token, user, data } = await response.json();
-      console.log(data);
 
       Auth.login(data.addUser.token);
     } catch (err) {
