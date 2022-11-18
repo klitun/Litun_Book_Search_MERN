@@ -29,13 +29,9 @@ console.log(data);
     }
 
     try {
-      const response = await deleteBook({
+      const { data } = await deleteBook({
         variables: { bookId }
       });
-
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
 
       // const updatedUser = await response.json();
       // setUserData(updatedUser);
