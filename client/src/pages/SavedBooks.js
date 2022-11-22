@@ -27,19 +27,16 @@ console.log(data);
     if (!token) {
       return false;
     }
-
+console.log(bookId);
     try {
       const response = await deleteBook({
-        variables: { bookId }
+        variables: { bookId: bookId },
       });
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
+      // if (!response.ok) {
+      //   throw new Error('something went wrong!');
+      // }
 
-      // const updatedUser = await response.json();
-      // setUserData(updatedUser);
-      // upon success, remove book's id from localStorage
       removeBookId(bookId);
     } catch (err) {
       console.error(err);
@@ -51,6 +48,8 @@ console.log(data);
     return <h2>LOADING...</h2>;
   }
   
+
+
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
@@ -65,7 +64,7 @@ console.log(data);
             : 'You have no saved books!'}
         </h2>
         <CardColumns>
-          {userData.savedBooks.map((book) => {
+          {userData.savedBooks.map(book => {
             return (
               <Card key={book.bookId} border='dark'>
                 {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
